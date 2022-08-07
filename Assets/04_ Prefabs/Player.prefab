@@ -51,10 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   moveSpeed: 1.5
-  paddingLeft: -0.55
-  paddingRight: 1.85
+  paddingLeft: 0.7
+  paddingRight: 0.7
   paddingTop: 0.4
-  paddingBottom: 0.8
+  paddingBottom: 0.6
 --- !u!50 &-5364869637823793789
 Rigidbody2D:
   serializedVersion: 4
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
+  hitEffect: {fileID: 2411940127624466195, guid: 6d8f630cb828fb14aa5e254a93a8c7c7, type: 3}
 --- !u!114 &7436755549027321695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +152,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4726826960072087124, guid: 93dfc95f2466ad8419b0099c5bcae547, type: 3}
   projectileSpeed: 10
   projectileLifetime: 5
-  firingRate: 0.2
+  baseFiringRate: 0.2
+  useAI: 0
+  firingRateVariance: 0
+  minimumFirngRate: 0.1
   isFiring: 0
 --- !u!1 &6616449830501408030
 GameObject:

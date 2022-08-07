@@ -931,26 +931,6 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1619804380}
-    - target: {fileID: 1303499743, guid: e2b7c5c47fdc7dc4cb51f85ca66b9e4d, type: 3}
-      propertyPath: paddingLeft
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303499743, guid: e2b7c5c47fdc7dc4cb51f85ca66b9e4d, type: 3}
-      propertyPath: paddingRight
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303499743, guid: e2b7c5c47fdc7dc4cb51f85ca66b9e4d, type: 3}
-      propertyPath: paddingBottom
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651815992, guid: e2b7c5c47fdc7dc4cb51f85ca66b9e4d, type: 3}
-      propertyPath: joystick
-      value: 
-      objectReference: {fileID: 11467636, guid: 7973d81b61b491640b7a0d00c9de83d3, type: 3}
-    - target: {fileID: 1651815992, guid: e2b7c5c47fdc7dc4cb51f85ca66b9e4d, type: 3}
-      propertyPath: projectileSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 463201324656042598, guid: e2b7c5c47fdc7dc4cb51f85ca66b9e4d, type: 3}
       propertyPath: m_Name
       value: Player

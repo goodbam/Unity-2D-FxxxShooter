@@ -6,6 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] int health = 50;
+    [SerializeField] ParticleSystem hitEffect;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +17,7 @@ public class Health : MonoBehaviour
         if (damageDealer != null)
         {
             TakeDamage(damageDealer.GetDamage()); // 부딪힌 오브젝트의 데미지를 가져온다.
+            PlayHitEffect();
             damageDealer.Hit(); // 부딪힌 오브젝트를 삭제한다.
         }
     }
@@ -27,6 +29,21 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void PlayHitEffect()
+    {
+
+        if (hitEffect != null)
+        {
+            Debug.Log("임펙트 실행!");
+            ParticleSystem instance = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax); // 임펙트는 실행 후 삭제
+        }
+        else
+        {
+            Debug.Log("There is no particle object.");
         }
     }
 }
