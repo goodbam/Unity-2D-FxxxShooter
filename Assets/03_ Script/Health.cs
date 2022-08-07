@@ -8,6 +8,14 @@ public class Health : MonoBehaviour
     [SerializeField] int health = 50;
     [SerializeField] ParticleSystem hitEffect;
 
+    [SerializeField] bool applyCameraShake;
+    CameraShake cameraShake;
+
+    void Awake()
+    {
+        cameraShake = Camera.main.GetComponent<CameraShake>();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // 부딪힌 오브젝트의 DamageDealer를 가져온다.
@@ -18,6 +26,7 @@ public class Health : MonoBehaviour
         {
             TakeDamage(damageDealer.GetDamage()); // 부딪힌 오브젝트의 데미지를 가져온다.
             PlayHitEffect();
+            ShakeCamera();
             damageDealer.Hit(); // 부딪힌 오브젝트를 삭제한다.
         }
     }
@@ -37,13 +46,21 @@ public class Health : MonoBehaviour
 
         if (hitEffect != null)
         {
-            Debug.Log("임펙트 실행!");
             ParticleSystem instance = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax); // 임펙트는 실행 후 삭제
         }
         else
         {
             Debug.Log("There is no particle object.");
+        }
+    }
+
+    void ShakeCamera()
+    {
+        if (cameraShake != null && applyCameraShake)
+        {
+            Debug.Log("흔들기 실행");
+            cameraShake.Play();
         }
     }
 }
