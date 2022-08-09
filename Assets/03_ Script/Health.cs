@@ -5,19 +5,29 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] bool isPlayer;
     [SerializeField] int health = 50;
     [SerializeField] ParticleSystem hitEffect;
+
+    [SerializeField] int experience = 10;
 
     [SerializeField] bool applyCameraShake;
 
     CameraShake cameraShake;
+
     AudioPlayer audioPlayer;
+    ScoreKeeper scoreKeeper;
+    LevelManager levelManager;
 
     void Awake()
     {
         cameraShake = Camera.main.GetComponent<CameraShake>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
+
+    public int GetHealth() { return health; } // 현재 에너지
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -41,8 +51,23 @@ public class Health : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        if (!isPlayer)
+        {
+            scoreKeeper.ModifyExperience(experience);
+        }
+        else
+        {
+            levelManager.LoadGameOver();
+        }
+
+
+        Destroy(gameObject);
     }
 
     void PlayHitEffect()
@@ -63,7 +88,6 @@ public class Health : MonoBehaviour
     {
         if (cameraShake != null && applyCameraShake)
         {
-            Debug.Log("흔들기 실행");
             cameraShake.Play();
         }
     }
